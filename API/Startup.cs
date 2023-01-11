@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using API.Data;
 using Microsoft.EntityFrameworkCore;
+using API.Extensions;
 
 namespace API
 {
@@ -18,12 +19,14 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
 
-  services.AddDbContext<DataContext>(options => 
-                          {  options.UseSqlServer(_config.GetConnectionString("DefaultConnection"));    });
+         services.AddApplicationServices(_config);
+        
+        //   services.AddDbContext<DataContext>(options => 
+        //                   {  options.UseSqlServer(_config.GetConnectionString("DefaultConnection"));    });
 
 
-          services.AddDbContext<DataContext>(options =>
-            {                options.UseSqlite(_config.GetConnectionString("DefaultSQLiteConnection"));            });
+        //   services.AddDbContext<DataContext>(options =>
+        //     {                options.UseSqlite(_config.GetConnectionString("DefaultSQLiteConnection"));            });
  
  /* 
             var conn = "Server = LAPTOP-8DMLOOD0\\SQLEXPRESS2016; Database = A---EFcfDbGenVSCode44; Trusted_Connection = True; ";

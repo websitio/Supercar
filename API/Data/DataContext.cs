@@ -17,10 +17,17 @@ namespace API.Data
           public DbSet<Vehicle> Vehicles    {get; set;}
           public DbSet<Model> Models {get;set;}
 
+
+  protected override void OnModelCreating(ModelBuilder builder)
+        {
+                    base.OnModelCreating(builder);
+              
+              
+                         builder.Entity<VehicleFeature>()
+                        .HasKey(vf => new { vf.VehicleId, vf.FeatureId });
+
+        }
     }
 }   
 
 
-
-
-// public DataContext(DbContextOptions<DataContext> options)  : base(options) {}
